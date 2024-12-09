@@ -225,9 +225,13 @@ class Ui_Login_Window(QtWidgets.QWidget):
         global user_now
         username = self.username.text()
         password = self.password.text()
-
-        if username in users:
-            if clients[username].password == password:
+        url = 'http://viollenaki.pythonanywhere.com/get_user'
+        response = requests.get(url, params={'username': username})
+        if response.json() == True:
+            url = 'http://viollenaki.pythonanywhere.com/check_password'
+            response = requests.get(url, params={'username': username, 'password': password})
+            if response.json() == True:
+                user_now = username
                 self.close()
 
                 # Создаем главное окно
@@ -262,19 +266,20 @@ class Ui_Login_Window(QtWidgets.QWidget):
 
 
 class Ui_Main_wind(QtWidgets.QWidget):
-    def setupUi(self, Main_wind):
-        Main_wind.setObjectName("Main_wind")
-        Main_wind.resize(700, 700)
-        Main_wind.setStyleSheet("background-color: rgb(148, 143, 124);")
-        self.label_2 = QtWidgets.QLabel(Main_wind)
-        self.label_2.setGeometry(QtCore.QRect(380, 40, 251, 41))
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(650, 550)
+        Form.setStyleSheet("background-color: rgb(148, 143, 124);")
+        self.movie_now = None
+        self.label_2 = QtWidgets.QLabel(Form)
+        self.label_2.setGeometry(QtCore.QRect(340, 20, 251, 41))
         self.label_2.setStyleSheet("background-color: rgb(15, 86, 90);\n"
 "color: rgb(255, 255, 255);\n"
 "font-size: 30px;\n"
 "border-radius: 20px")
         self.label_2.setObjectName("label_2")
-        self.history = QtWidgets.QPushButton(Main_wind)
-        self.history.setGeometry(QtCore.QRect(489, 530, 141, 51))
+        self.history = QtWidgets.QPushButton(Form)
+        self.history.setGeometry(QtCore.QRect(449, 470, 141, 51))
         self.history.setStyleSheet("QPushButton:hover{\n"
 "    background-color: rgb(23, 137, 143);\n"
 "    color: rgb(255, 255, 255);\n"
@@ -295,12 +300,8 @@ class Ui_Main_wind(QtWidgets.QWidget):
 "}\n"
 "")
         self.history.setObjectName("history")
-        self.movies_table = QtWidgets.QTableView(Main_wind)
-        self.movies_table.setGeometry(QtCore.QRect(90, 100, 256, 371))
-        self.movies_table.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.movies_table.setObjectName("movies_table")
-        self.info = QtWidgets.QPushButton(Main_wind)
-        self.info.setGeometry(QtCore.QRect(100, 530, 130, 51))
+        self.info = QtWidgets.QPushButton(Form)
+        self.info.setGeometry(QtCore.QRect(60, 470, 130, 51))
         self.info.setStyleSheet("QPushButton:hover{\n"
 "    background-color: rgb(23, 137, 143);\n"
 "    color: rgb(255, 255, 255);\n"
@@ -321,8 +322,8 @@ class Ui_Main_wind(QtWidgets.QWidget):
 "}\n"
 "")
         self.info.setObjectName("info")
-        self.buy_tickets = QtWidgets.QPushButton(Main_wind)
-        self.buy_tickets.setGeometry(QtCore.QRect(300, 530, 130, 51))
+        self.buy_tickets = QtWidgets.QPushButton(Form)
+        self.buy_tickets.setGeometry(QtCore.QRect(260, 470, 130, 51))
         self.buy_tickets.setStyleSheet("QPushButton:hover{\n"
 "    background-color: rgb(23, 137, 143);\n"
 "    color: rgb(255, 255, 255);\n"
@@ -343,18 +344,14 @@ class Ui_Main_wind(QtWidgets.QWidget):
 "}\n"
 "")
         self.buy_tickets.setObjectName("buy_tickets")
-        self.label = QtWidgets.QLabel(Main_wind)
-        self.label.setGeometry(QtCore.QRect(90, 40, 251, 41))
+        self.label = QtWidgets.QLabel(Form)
+        self.label.setGeometry(QtCore.QRect(50, 20, 251, 41))
         self.label.setStyleSheet("background-color: rgb(15, 86, 90);\n"
 "color: rgb(255, 255, 255);\n"
 "font-size: 30px;\n"
 "border-radius: 20px")
         self.label.setObjectName("label")
-        self.seance_table = QtWidgets.QTableView(Main_wind)
-        self.seance_table.setGeometry(QtCore.QRect(380, 100, 261, 371))
-        self.seance_table.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.seance_table.setObjectName("seance_table")
-        self.exit_button = QtWidgets.QPushButton(Main_wind)
+        self.exit_button = QtWidgets.QPushButton(Form)
         self.exit_button.setGeometry(QtCore.QRect(0, 660, 121, 41))
         self.exit_button.setStyleSheet("QPushButton:hover{\n"
 "    background-color: rgb(23, 137, 143);\n"
@@ -376,20 +373,50 @@ class Ui_Main_wind(QtWidgets.QWidget):
 "}\n"
 "")
         self.exit_button.setObjectName("exit_button")
+        self.movies_list = QtWidgets.QListWidget(Form)
+        self.movies_list.setGeometry(QtCore.QRect(40, 80, 260, 370))
+        self.movies_list.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"font-size: 15px;")
+        self.movies_list.setObjectName("movies_list")
+        self.movies_list.itemDoubleClicked.connect(self.fill_seance_table)   
 
-        self.retranslateUi(Main_wind)
-        QtCore.QMetaObject.connectSlotsByName(Main_wind)
+        self.seance_list = QtWidgets.QListWidget(Form)
+        self.seance_list.setGeometry(QtCore.QRect(340, 80, 260, 370))
+        self.seance_list.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"font-size: 15px;")
+        self.seance_list.setObjectName("seance_list")
+        # self.seance_list.itemDoubleClicked.connect(self.buy_ticket)
 
-    def retranslateUi(self, Main_wind):
+        self.retranslateUi(Form)
+        self.fill_film_table()
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Main_wind.setWindowTitle(_translate("Main_wind", "Form"))
-        self.label_2.setText(_translate("Main_wind", "<html><head/><body><p align=\"center\">Seance</p></body></html>"))
-        self.history.setText(_translate("Main_wind", "HISTORY"))
-        self.info.setText(_translate("Main_wind", "INFO"))
-        self.buy_tickets.setText(_translate("Main_wind", "BUY"))
-        self.label.setText(_translate("Main_wind", "<html><head/><body><p align=\"center\">Movies</p></body></html>"))
-        self.exit_button.setText(_translate("Main_wind", "EXIT"))
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.label_2.setText(_translate("Form", "<html><head/><body><p align=\"center\">Seance</p></body></html>"))
+        self.history.setText(_translate("Form", "HISTORY"))
+        self.info.setText(_translate("Form", "INFO"))
+        self.buy_tickets.setText(_translate("Form", "BUY"))
+        self.label.setText(_translate("Form", "<html><head/><body><p align=\"center\">Movies</p></body></html>"))
+        self.exit_button.setText(_translate("Form", "EXIT"))
 
+    def fill_film_table(self):
+        response = requests.get('http://viollenaki.pythonanywhere.com/get_films').json()
+        films = [i for i in response.keys()]
+        for i in films:
+            self.movies_list.addItem(i)
+
+
+
+
+    def fill_seance_table(self):
+        self.seance_list.clear()
+        selected_movie = self.movies_list.selectedItems()[0].text()
+        response = requests.get('http://viollenaki.pythonanywhere.com/get_seances', params={'film': selected_movie}).json()
+        seances = [i for i in response.keys()]
+        for i in seances:
+            self.seance_list.addItem(i)
 
 
 

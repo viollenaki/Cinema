@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>700</height>
+    <width>650</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>40</y>
+     <x>340</x>
+     <y>20</y>
      <width>251</width>
      <height>41</height>
     </rect>
@@ -38,8 +38,8 @@ border-radius: 20px</string>
   <widget class="QPushButton" name="history">
    <property name="geometry">
     <rect>
-     <x>489</x>
-     <y>530</y>
+     <x>449</x>
+     <y>470</y>
      <width>141</width>
      <height>51</height>
     </rect>
@@ -69,24 +69,11 @@ border-radius: 20px
     <string>HISTORY</string>
    </property>
   </widget>
-  <widget class="QTableView" name="movies_table">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>100</y>
-     <width>256</width>
-     <height>371</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="info">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>530</y>
+     <x>60</x>
+     <y>470</y>
      <width>130</width>
      <height>51</height>
     </rect>
@@ -119,8 +106,8 @@ border-radius: 20px
   <widget class="QPushButton" name="buy_tickets">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>530</y>
+     <x>260</x>
+     <y>470</y>
      <width>130</width>
      <height>51</height>
     </rect>
@@ -153,8 +140,8 @@ border-radius: 20px
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>40</y>
+     <x>50</x>
+     <y>20</y>
      <width>251</width>
      <height>41</height>
     </rect>
@@ -167,19 +154,6 @@ border-radius: 20px</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Movies&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QTableView" name="seance_table">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>100</y>
-     <width>261</width>
-     <height>371</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QPushButton" name="exit_button">
@@ -214,6 +188,40 @@ border-radius: 20px
    </property>
    <property name="text">
     <string>EXIT</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="movies_list">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>80</y>
+     <width>260</width>
+     <height>370</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+font-size: 15px;</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="seance_list">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>80</y>
+     <width>260</width>
+     <height>370</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+font-size: 15px;</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
