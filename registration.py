@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'registration_window.ui'
+# Form implementation generated from reading ui file 'registration.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -19,11 +19,17 @@ class Ui_Registration(object):
         Registration.setStyleSheet("background-color:rgb(148, 143, 124)")
         self.label = QtWidgets.QLabel(Registration)
         self.label.setGeometry(QtCore.QRect(40, 10, 231, 31))
-        self.label.setStyleSheet("background-color:rgb(15, 86, 90)")
+        self.label.setStyleSheet("background-color: rgb(15, 86, 90);\n"
+"color: rgb(255, 255, 255);\n"
+"font-size: 20px;\n"
+"border-radius: 15px")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Registration)
         self.label_2.setGeometry(QtCore.QRect(40, 100, 231, 31))
-        self.label_2.setStyleSheet("background-color:rgb(15, 86, 90)")
+        self.label_2.setStyleSheet("background-color: rgb(15, 86, 90);\n"
+"color: rgb(255, 255, 255);\n"
+"font-size: 20px;\n"
+"border-radius: 15px")
         self.label_2.setObjectName("label_2")
         self.username = QtWidgets.QLineEdit(Registration)
         self.username.setGeometry(QtCore.QRect(60, 50, 191, 31))
@@ -41,13 +47,31 @@ class Ui_Registration(object):
         self.confirm_password.setObjectName("confirm_password")
         self.label_3 = QtWidgets.QLabel(Registration)
         self.label_3.setGeometry(QtCore.QRect(40, 190, 231, 31))
-        self.label_3.setStyleSheet("background-color:rgb(15, 86, 90)")
+        self.label_3.setStyleSheet("background-color: rgb(15, 86, 90);\n"
+"color: rgb(255, 255, 255);\n"
+"font-size: 20px;\n"
+"border-radius: 15px")
         self.label_3.setObjectName("label_3")
         self.sign_up = QtWidgets.QPushButton(Registration)
         self.sign_up.setGeometry(QtCore.QRect(40, 280, 231, 71))
-        self.sign_up.setStyleSheet("color: rgb(255, 255, 255);\n"
+        self.sign_up.setStyleSheet("QPushButton:hover{\n"
+"    background-color: rgb(23, 137, 143);\n"
+"    color: rgb(255, 255, 255);\n"
+"    font-size: 30px;\n"
+"    border-radius: 30px\n"
+"}\n"
+"QPushButton:pressed{\n"
+"    background-color:rgb(14, 85, 89);\n"
+"    color: rgb(255, 255, 255);\n"
+"    font-size: 30px;\n"
+"    border-radius:30px\n"
+"}\n"
+"QPushButton{\n"
 "background-color: rgb(15, 86, 90);\n"
+"color: rgb(255, 255, 255);\n"
 "font-size: 30px;\n"
+"border-radius: 30px\n"
+"}\n"
 "")
         self.sign_up.setObjectName("sign_up")
 
