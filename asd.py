@@ -5,19 +5,69 @@ import json
 main_user = 'akbar'
 main_password = '123'
 
-users = set()
-
-clients = {}
-class Client:
-    def __init__(self, name, password):
-        self.name = name
-        self.password = password
+user_now = ''
 
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
+
+class Ui_History(QtWidgets.QWidget):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(509, 513)
+        Form.setStyleSheet("background-color: rgb(148, 143, 124);")
+        self.history_list = None
+        self.label = QtWidgets.QLabel(Form)
+        self.label.setGeometry(QtCore.QRect(70, 40, 121, 71))
+        self.label.setStyleSheet("background-color: rgb(15, 86, 90);\n"
+"font-size: 20px;\n"
+"border-radius: 10px")
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(Form)
+        self.label_2.setGeometry(QtCore.QRect(320, 40, 121, 71))
+        self.label_2.setStyleSheet("background-color: rgb(15, 86, 90);\n"
+"font-size: 20px;\n"
+"border-radius: 10px")
+        self.label_2.setObjectName("label_2")
+        self.movies_list = QtWidgets.QListWidget(Form)
+        self.movies_list.setGeometry(QtCore.QRect(40, 150, 191, 192))
+        self.movies_list.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"font-size: 20px;\n"
+"")
+        self.movies_list.setObjectName("movies_list")
+
+
+        self.seances_list = QtWidgets.QListWidget(Form)
+        self.seances_list.setGeometry(QtCore.QRect(300, 150, 191, 192))
+        self.seances_list.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"font-size: 20px;\n"
+"")
+        self.seances_list.setObjectName("seances_list")
+
+
+        self.get_history()
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.label.setText(_translate("Form", "<html><head/><body><p align=\"center\">movies</p></body></html>"))
+        self.label_2.setText(_translate("Form", "<html><head/><body><p align=\"center\">date</p></body></html>"))
+
+    def get_history(self):
+        response = requests.get('http://viollenaki.pythonanywhere.com/get_history', params={'user': user_now}).json()
+        self.history_list = response
+        for i in self.history_list:
+            self.movies_list.addItem(i)
+
+    def get_seances(self):
+        self.seances_list.clear()
+        selected_movie = self.movies_list.selectedItems()[0].text()
+        for i in self.history_list[selected_movie]:
+            self.seances_list.addItem(i)
 
 
 class Ui_Registration(QtWidgets.QDialog):
@@ -118,7 +168,7 @@ class Ui_Registration(QtWidgets.QDialog):
                 QtWidgets.QMessageBox.critical(self, "Error", "Username already exists.")
         else:
             QtWidgets.QMessageBox.critical(self, "Error", "Passwords do not match.")
-
+        
 
 
 
@@ -264,7 +314,6 @@ class Ui_Main_wind(QtWidgets.QWidget):
         Form.setObjectName("Form")
         Form.resize(650, 550)
         Form.setStyleSheet("background-color: rgb(148, 143, 124);")
-        self.movie_now = None
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(340, 20, 251, 41))
         self.label_2.setStyleSheet("background-color: rgb(15, 86, 90);\n"
@@ -294,6 +343,10 @@ class Ui_Main_wind(QtWidgets.QWidget):
 "}\n"
 "")
         self.history.setObjectName("history")
+        self.history.clicked.connect(self.history_window)
+
+
+
         self.info = QtWidgets.QPushButton(Form)
         self.info.setGeometry(QtCore.QRect(60, 470, 130, 51))
         self.info.setStyleSheet("QPushButton:hover{\n"
@@ -316,6 +369,9 @@ class Ui_Main_wind(QtWidgets.QWidget):
 "}\n"
 "")
         self.info.setObjectName("info")
+
+
+
         self.buy_tickets = QtWidgets.QPushButton(Form)
         self.buy_tickets.setGeometry(QtCore.QRect(260, 470, 130, 51))
         self.buy_tickets.setStyleSheet("QPushButton:hover{\n"
@@ -338,6 +394,8 @@ class Ui_Main_wind(QtWidgets.QWidget):
 "}\n"
 "")
         self.buy_tickets.setObjectName("buy_tickets")
+
+
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(50, 20, 251, 41))
         self.label.setStyleSheet("background-color: rgb(15, 86, 90);\n"
@@ -345,6 +403,7 @@ class Ui_Main_wind(QtWidgets.QWidget):
 "font-size: 30px;\n"
 "border-radius: 20px")
         self.label.setObjectName("label")
+
         self.exit_button = QtWidgets.QPushButton(Form)
         self.exit_button.setGeometry(QtCore.QRect(0, 660, 121, 41))
         self.exit_button.setStyleSheet("QPushButton:hover{\n"
@@ -411,6 +470,12 @@ class Ui_Main_wind(QtWidgets.QWidget):
         seances = [i for i in response.keys()]
         for i in seances:
             self.seance_list.addItem(i)
+
+    def history_window(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_History()
+        self.ui.setupUi(self.window)
+        self.window.show()
 
 
 
