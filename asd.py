@@ -234,28 +234,22 @@ class Ui_Login_Window(QtWidgets.QWidget):
                 user_now = username
                 self.close()
 
-                # Создаем главное окно
                 self.window = QtWidgets.QWidget()
                 self.ui = Ui_Main_wind()
                 self.ui.setupUi(self.window)
 
-                # Получаем разрешение экрана
                 screen = QtWidgets.QApplication.primaryScreen()
                 screen_rect = screen.availableGeometry()
 
-                # Размер окна
                 window_size = self.window.geometry()
                 window_width = window_size.width()
                 window_height = window_size.height()
 
-                # Рассчитываем координаты для центрирования окна
                 x = (screen_rect.width() - window_width) // 2
                 y = (screen_rect.height() - window_height) // 2
 
-                # Перемещаем окно в центр экрана
                 self.window.move(x, y)
 
-                # Показываем окно
                 self.window.show()
             else:
                 QtWidgets.QMessageBox.critical(self, "Error", "Incorrect password.")
