@@ -1,0 +1,82 @@
+class Movie:
+    def __init__(self, movie, price):
+        self.name = movie
+        self.price = price
+        self.booked = []
+        self.seances = {}
+        self.seances_profit = defaultdict(list)
+
+    def add_seance(self, seance):
+        if seance not in self.seances:
+            self.seances[seance] = []
+
+    def add_booking(self, seance, seats):
+        self.seances[seance].extend(seats)
+        self.seances_profit[seance] += [len(seats)*self.price]
+
+    def get_seances(self):
+        arr = []
+        for i in self.seances.keys():
+            arr.append(i)
+        return arr
+
+    def get_seances_booked(self,seance):
+        return self.seances.get(seance, [])
+
+    def get_seance_profit(self, seance):
+        return sum(self.seances_profit[seance])
+
+
+class Cinema:
+    def __init__(self):
+        self.movies = {}
+        self.history = []
+        self.total = {}
+
+    def add_movie(self, movie, seance, price):
+        if movie not in self.movies:
+            self.movies[movie] = Movie(movie, price)
+            self.movies[movie].add_seance(seance)
+
+        else:
+            self.movies[movie].add_seance(seance)
+            self.movies[movie].price = price
+
+    def booking(self, user, movie, seance, seats):
+        self.movies[movie].add_booking(seance, seats)
+
+        self.history.append((user, movie, seance))
+
+
+
+    def get_user_history(self, user):
+        arr = []
+        for n, movie_name, seance, price in self.history:
+            if n == user:
+                arr.append((movie_name, seance, price))
+        return arr
+
+    def get_movies(self):
+        arr = []
+        for i in self.movies.keys():
+            arr.append(i)
+        return arr
+
+    def get_movie_seances(self, movie):
+        return self.movies[movie].get_seances()
+
+    def get_movie_booked_seats(self,movie, seance):
+        return self.movies[movie].get_seances_booked(seance)
+
+    def get_movie_price(self,movie):
+        return self.movies[movie].price
+
+
+    def get_seance_profit(self, movie, seance):
+        return self.movies[movie].get_seance_profit(seance)
+
+    def get_movie_profit(self, movie):
+        total = 0
+        for i in self.movies[movie].seances_profit.values():
+            total += sum(i)
+        return total
