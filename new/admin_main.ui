@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>780</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>main (Admin)</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(148, 143, 124);</string>
+  </property>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>42</x>
+     <y>469</y>
+     <width>278</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Book Antiqua</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(15, 86, 90);
+border-radius: 10px;</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#ffffff;&quot;&gt;Total of Movie&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>540</y>
+     <width>278</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Book Antiqua</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(15, 86, 90);
+border-radius: 10px;</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#ffffff;&quot;&gt;Total&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>18</y>
+     <width>221</width>
+     <height>47</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Book Antiqua</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(15, 86, 90);
+border-radius: 10px;</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#ffffff;&quot;&gt;Movies&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="total_text">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>537</y>
+     <width>274</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="seance_list">
+   <property name="geometry">
+    <rect>
+     <x>371</x>
+     <y>77</y>
+     <width>296</width>
+     <height>372</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(217, 217, 217);
+border-radius: 10px;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>408</x>
+     <y>18</y>
+     <width>221</width>
+     <height>47</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Book Antiqua</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(15, 86, 90);
+border-radius: 10px;</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; color:#ffffff;&quot;&gt;Seance&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="all_history">
+   <property name="geometry">
+    <rect>
+     <x>408</x>
+     <y>609</y>
+     <width>221</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:hover{
+	background-color: rgb(23, 137, 143);
+	color: rgb(255, 255, 255);
+	font-size: 30px;
+	border-radius: 20px
+}
+QPushButton:pressed{
+	background-color:rgb(14, 85, 89);
+	color: rgb(255, 255, 255);
+	font-size: 30px;
+	border-radius: 20px
+}
+QPushButton{
+background-color: rgb(15, 86, 90);
+color: rgb(255, 255, 255);
+font-size: 30px;
+border-radius: 20px
+}
+</string>
+   </property>
+   <property name="text">
+    <string>All History</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="movie_list">
+   <property name="geometry">
+    <rect>
+     <x>33</x>
+     <y>77</y>
+     <width>296</width>
+     <height>372</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(217, 217, 217);
+border-radius: 10px;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="add_movie">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>609</y>
+     <width>221</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:hover{
+	background-color: rgb(23, 137, 143);
+	color: rgb(255, 255, 255);
+	font-size: 30px;
+	border-radius: 20px
+}
+QPushButton:pressed{
+	background-color:rgb(14, 85, 89);
+	color: rgb(255, 255, 255);
+	font-size: 30px;
+	border-radius: 20px
+}
+QPushButton{
+background-color: rgb(15, 86, 90);
+color: rgb(255, 255, 255);
+font-size: 30px;
+border-radius: 20px
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Add Movie</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="totalofmovie_text">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>469</y>
+     <width>274</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="log_out">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>710</y>
+     <width>221</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:hover{
+	background-color: rgb(23, 137, 143);
+	color: rgb(255, 255, 255);
+	font-size: 30px;
+	border-radius: 20px
+}
+QPushButton:pressed{
+	background-color:rgb(14, 85, 89);
+	color: rgb(255, 255, 255);
+	font-size: 30px;
+	border-radius: 20px
+}
+QPushButton{
+background-color: rgb(15, 86, 90);
+color: rgb(255, 255, 255);
+font-size: 30px;
+border-radius: 20px
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Log Out</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
