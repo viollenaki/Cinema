@@ -25,11 +25,9 @@ class SeatGenerator(QtWidgets.QDialog):
 
 
     def setupUi(self):
-    # Задаем размеры и заголовок окна
-        self.setGeometry(100, 100, 1000, 700)  # Размеры окна
-        self.setWindowTitle('Seat Generator')  # Заголовок окна
+        self.setGeometry(100, 100, 1000, 700)  
+        self.setWindowTitle('Hall') 
 
-        # Устанавливаем цвет фона окна
         self.setStyleSheet("background-color: rgb(13, 44, 62);")
         
         self.buy = QtWidgets.QPushButton('Buy',self)
@@ -267,7 +265,6 @@ class SeatGenerator(QtWidgets.QDialog):
                 button.setGeometry(x, y, button_width, button_height)
                 button.setFont(QtGui.QFont('Arial', 10))
 
-                # Изменим использование лямбда-функции
                 button.clicked.connect(self.make_button_click_handler(seat_id, button))
 
                 if seat_id not in booked_seats:
